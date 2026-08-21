@@ -592,7 +592,9 @@ systemctl restart mosdns
 log "✓ mosdns 已重启，更新完成"
 UPDATEEOF
   chmod +x /opt/mosdns/update-mosdns.sh
-  (crontab -l 2>/dev/null | grep -v update-mosdns; echo "0 3 * * 1 /opt/mosdns/update-mosdns.sh >/dev/null 2>&1") | crontab -
+  # 🔴 子 shell 内必须 set +e：空 crontab 时 `crontab -l | grep -v` 的 grep 退出码 1，
+  #    继承的 set -e 会杀死子 shell → echo 不执行 → crontab - 收到空输入（清空/不写入）
+  (set +e; crontab -l 2>/dev/null | grep -v update-mosdns; echo "0 3 * * 1 /opt/mosdns/update-mosdns.sh >/dev/null 2>&1") | crontab -
   info "  ✓ 已创建 update-mosdns.sh 并添加 crontab（每周一 03:00）"
 
   info ""
