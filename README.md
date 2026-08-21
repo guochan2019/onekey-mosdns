@@ -45,7 +45,7 @@ wget -qO- https://raw.githubusercontent.com/guochan2019/onekey-mosdns/main/oneke
 | 选项 | 功能 |
 |------|------|
 | **1** | 未安装 → 9 步完整安装；已安装 → 检测版本并升级 |
-| **2** | 卸载：停止服务、删除全部文件、清除 crontab |
+| **2** | 卸载：停止服务、删除全部文件、清除 crontab、恢复 `/etc/resolv.conf` → 223.5.5.5 |
 | **0** | 退出 |
 
 ## 安装流程
