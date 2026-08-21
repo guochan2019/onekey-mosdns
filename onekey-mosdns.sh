@@ -596,6 +596,7 @@ UPDATEEOF
   #    继承的 set -e 会杀死子 shell → echo 不执行 → crontab - 收到空输入（清空/不写入）
   (set +e; crontab -l 2>/dev/null | grep -v update-mosdns; echo "0 3 * * 1 /opt/mosdns/update-mosdns.sh >/dev/null 2>&1") | crontab -
   info "  ✓ 已创建 update-mosdns.sh 并添加 crontab（每周一 03:00）"
+  info "     📍 定时任务保存位置: root 用户 crontab（/var/spool/cron/crontabs/root），crontab -l 查看"
 
   info ""
   info "✅ 全部完成！mosdns 已在 :53 提供服务"
