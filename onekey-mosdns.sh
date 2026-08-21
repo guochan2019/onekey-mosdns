@@ -261,7 +261,7 @@ UNPACKEOF
     [ -f "${RULE_DIR}/$f" ] || touch "${RULE_DIR}/$f"
   done
   # Tailscale 域名规则
-  echo 'keyword:ts.net' > "${RULE_DIR}/ts_domain.txt"
+  echo 'keyword:tail1e41a.ts.net' > "${RULE_DIR}/ts_domain.txt"
   info "  ✓ 自定义规则模板已创建 (whitelist/blocklist/hosts/ts_domain)"
 
   # 7. 写入 config.yaml
