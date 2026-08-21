@@ -62,11 +62,9 @@ uninstall_mosdns() {
   # 清除 crontab
   (crontab -l 2>/dev/null | grep -v update-mosdns) | crontab - 2>/dev/null || true
 
-  # 恢复 DNS（如果当前是 127.0.0.1，改成公共 DNS 否则断网）
-  if grep -q 'nameserver 127.0.0.1' /etc/resolv.conf 2>/dev/null; then
-    echo "nameserver 223.5.5.5" > /etc/resolv.conf
-    info "  /etc/resolv.conf 已恢复 (223.5.5.5)"
-  fi
+  # 恢复 DNS：卸载后系统解析不依赖本机 mosdns，指向公共 DNS（223.5.5.5 实测可用）
+  echo "nameserver 223.5.5.5" > /etc/resolv.conf
+  info "  /etc/resolv.conf 已恢复 (223.5.5.5)"
 
   info "✓ mosdns 已卸载"
   info "  安装目录 ${INSTALL_DIR} 已删除"
